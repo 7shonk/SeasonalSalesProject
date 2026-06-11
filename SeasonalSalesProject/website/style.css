@@ -1,0 +1,806 @@
+/* ==========================================================================
+   FC BARCELONA THEME & CORE VARIABLE SETTINGS
+   ========================================================================== */
+:root {
+  --fcb-blue: #004D98;       /* 經典巴薩藍 */
+  --fcb-garnet: #A50044;     /* 經典巴薩紅 */
+  --fcb-gold: #EDBB00;       /* 亮點金黃色 */
+  --dark-navy: #0A192F;      /* 現代深底色 */
+  --light-bg: #F4F6F9;       /* 乾淨灰底 */
+  --pure-white: #FFFFFF;
+  --text-primary: #111827;
+  --text-secondary: #4B5563;
+  --font-display: 'Poppins', 'Noto Sans TC', sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-display);
+  background-color: var(--light-bg);
+  color: var(--text-primary);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* ==========================================================================
+   TOPBAR NAVIGATION
+   ========================================================================== */
+.topbar {
+  background-color: var(--dark-navy);
+  border-bottom: 4px solid var(--fcb-gold);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+
+.topbar-inner {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 24px;
+  height: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  color: var(--pure-white);
+  font-size: 22px;
+  font-weight: 900;
+  letter-spacing: -0.5px;
+}
+
+.logo .accent-text {
+  color: var(--fcb-gold);
+}
+
+nav {
+  display: flex;
+  gap: 32px;
+  height: 100%;
+}
+
+nav a {
+  color: #9CA3AF;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  transition: color 0.3s;
+}
+
+nav a:hover, nav a.active {
+  color: var(--pure-white);
+}
+
+nav a.active::after, nav a:hover::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background-color: var(--fcb-garnet);
+}
+
+.lang-selector {
+  color: var(--pure-white);
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ==========================================================================
+   HERO SECTION (FCB Main Visual Style with Diagonal Cut)
+   ========================================================================== */
+.hero {
+  position: relative;
+  background: linear-gradient(135deg, var(--fcb-blue) 0%, #002855 100%);
+  color: var(--pure-white);
+  padding: 100px 24px 140px 24px;
+  text-align: center;
+  overflow: hidden;
+}
+
+/* 模仿官網經典背景斜切色塊 */
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -70px;
+  left: -10%;
+  width: 120%;
+  height: 140px;
+  background: var(--light-bg);
+  transform: rotate(-3deg);
+  z-index: 1;
+}
+
+.hero-inner {
+  max-width: 850px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-badge {
+  background-color: var(--fcb-garnet);
+  color: var(--pure-white);
+  font-size: 12px;
+  font-weight: 800;
+  padding: 6px 16px;
+  display: inline-block;
+  letter-spacing: 2px;
+  margin-bottom: 24px;
+  border-radius: 2px;
+}
+
+.hero h1 {
+  font-size: 54px;
+  font-weight: 900;
+  line-height: 1.2;
+  letter-spacing: -1px;
+  margin-bottom: 24px;
+}
+
+.hero h1 .highlight {
+  color: var(--fcb-gold);
+}
+
+.hero p {
+  font-size: 18px;
+  color: #E5E7EB;
+  margin-bottom: 40px;
+  font-weight: 400;
+}
+
+/* 搜尋區塊高階優化 */
+.search-box {
+  background: var(--pure-white);
+  padding: 8px;
+  border-radius: 4px;
+  display: flex;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+  margin-bottom: 40px;
+}
+
+.search-input-wrapper {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  padding-left: 16px;
+}
+
+.search-icon {
+  color: var(--text-secondary);
+  font-size: 18px;
+}
+
+.search-box input {
+  width: 100%;
+  border: none;
+  outline: none;
+  padding: 16px;
+  font-size: 16px;
+  color: var(--text-primary);
+  font-family: var(--font-display);
+}
+
+.search-box button {
+  background: linear-gradient(135deg, var(--fcb-garnet) 0%, #7A0032 100%);
+  color: var(--pure-white);
+  border: none;
+  padding: 0 32px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: transform 0.2s, filter 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.search-box button:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+}
+
+.hero-tags {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.hero-tags span {
+  background-color: rgba(255,255,255,0.1);
+  padding: 8px 18px;
+  border-radius: 50px;
+  font-size: 14px;
+  font-weight: 700;
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255,255,255,0.15);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ==========================================================================
+   SECTION HEADERS (巴薩新聞風格主標題)
+   ========================================================================== */
+.section-header {
+  text-align: center;
+  margin-bottom: 50px;
+  position: relative;
+}
+
+.section-header h2 {
+  font-size: 36px;
+  font-weight: 900;
+  color: var(--dark-navy);
+  position: relative;
+  display: inline-block;
+  text-transform: uppercase;
+}
+
+/* 水印背景字效果 */
+.section-header h2::before {
+  content: attr(data-title);
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 60px;
+  opacity: 0.04;
+  font-weight: 900;
+  width: 100%;
+  z-index: -1;
+}
+
+.barca-line {
+  width: 60px;
+  height: 5px;
+  background-color: var(--fcb-garnet);
+  margin: 12px auto 0 auto;
+  position: relative;
+}
+
+.barca-line::after {
+  content: '';
+  position: absolute;
+  right: -10px;
+  width: 10px;
+  height: 100%;
+  background-color: var(--fcb-gold);
+}
+
+/* ==========================================================================
+   INSIGHT SECTION (塊狀巨星卡片排版)
+   ========================================================================== */
+.insight {
+  max-width: 1300px;
+  margin: -40px auto 80px auto;
+  padding: 0 24px;
+  position: relative;
+  z-index: 10;
+}
+
+.insight-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.insight-card {
+  background-color: var(--pure-white);
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  transition: transform 0.3s, box-shadow 0.3s;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* 左側巴薩色條裝飾 */
+.insight-card .card-edge {
+  height: 6px;
+  background: linear-gradient(to right, var(--fcb-blue) 50%, var(--fcb-gold) 50%);
+}
+
+.insight-card.featured .card-edge {
+  background: linear-gradient(to right, var(--fcb-garnet) 50%, var(--fcb-gold) 50%);
+}
+
+.insight-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+}
+
+/* 主打卡片高亮排版 */
+.insight-card.featured {
+  background: linear-gradient(180deg, var(--dark-navy) 0%, #001E3D 100%);
+  color: var(--pure-white);
+}
+
+.card-content {
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.card-icon {
+  font-size: 32px;
+  color: var(--fcb-blue);
+  margin-bottom: 24px;
+}
+
+.insight-card.featured .card-icon {
+  color: var(--fcb-gold);
+}
+
+.card-content h3 {
+  font-size: 22px;
+  font-weight: 800;
+  margin-bottom: 16px;
+}
+
+.card-content p {
+  color: var(--text-secondary);
+  font-size: 15px;
+  flex-grow: 1;
+  margin-bottom: 30px;
+}
+
+.insight-card.featured p {
+  color: #9CA3AF;
+}
+
+.card-more {
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--fcb-garnet);
+  cursor: pointer;
+}
+
+.insight-card.featured .card-more {
+  color: var(--fcb-gold);
+}
+
+/* ==========================================================================
+   ANALYTICS DATA SECTION (體育數據中心風格)
+   ========================================================================== */
+.analytics {
+  max-width: 1300px;
+  margin: 0 auto 80px auto;
+  padding: 0 24px;
+}
+
+.chart-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.chart-card {
+  background-color: var(--pure-white);
+  border-radius: 4px;
+  border: 1px solid #E5E7EB;
+  padding: 24px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+}
+
+.chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  border-bottom: 2px solid var(--light-bg);
+  padding-bottom: 12px;
+}
+
+.chart-header h3 {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--dark-navy);
+}
+
+.chart-header h3 i {
+  color: var(--fcb-blue);
+  margin-right: 8px;
+}
+
+.badge {
+  background-color: #E2E8F0;
+  color: var(--text-secondary);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.badge.live {
+  background-color: #FEE2E2;
+  color: #EF4444;
+}
+
+.canvas-wrapper {
+  position: relative;
+  height: 240px;
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.chart-footer {
+  font-size: 13px;
+  color: var(--text-secondary);
+  text-align: center;
+  font-weight: 500;
+  background-color: var(--light-bg);
+  padding: 8px;
+  border-radius: 4px;
+}
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+footer {
+  background-color: var(--dark-navy);
+  color: #9CA3AF;
+  padding: 40px 24px;
+  border-top: 8px solid var(--fcb-garnet);
+  text-align: center;
+}
+
+.footer-inner {
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.footer-logo {
+  color: var(--pure-white);
+  font-weight: 900;
+  font-size: 18px;
+  margin-bottom: 12px;
+  letter-spacing: 1px;
+}
+
+/* ==========================================================================
+   RESPONSIVE RENDER (RWD 手機板自適應)
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .insight-grid, .chart-grid {
+    grid-template-columns: 1fr;
+  }
+  .hero h1 {
+    font-size: 38px;
+  }
+  nav {
+    display: none; /* 手機版簡化導覽 */
+  }
+}
+
+/* ==========================================================================
+   PRODUCTS PAGE & RECOMMENDATION PAGE CUSTOM STYLES
+   ========================================================================== */
+
+/* Filter Bar & Controls */
+.filter-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.filter-btn-group {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  background-color: transparent;
+  border: 2px solid var(--fcb-blue);
+  color: var(--fcb-blue);
+  font-weight: 700;
+  padding: 10px 22px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: var(--font-display);
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.filter-btn.active, .filter-btn:hover {
+  background-color: var(--fcb-blue);
+  color: var(--pure-white);
+  box-shadow: 0 4px 12px rgba(0, 77, 152, 0.2);
+}
+
+.filter-search-wrapper {
+  position: relative;
+  flex-grow: 1;
+  max-width: 350px;
+  display: flex;
+  align-items: center;
+  background-color: var(--pure-white);
+  border: 2px solid #E5E7EB;
+  border-radius: 4px;
+  padding: 0 16px;
+  transition: border-color 0.3s;
+}
+
+.filter-search-wrapper:focus-within {
+  border-color: var(--fcb-blue);
+}
+
+.filter-search-wrapper i {
+  color: var(--text-secondary);
+  margin-right: 8px;
+}
+
+.filter-search-wrapper input {
+  border: none;
+  outline: none;
+  padding: 12px 0;
+  font-size: 15px;
+  width: 100%;
+  font-family: var(--font-display);
+}
+
+/* Product Card Stats */
+.product-stats {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px dashed #E5E7EB;
+}
+
+.product-stats span strong {
+  color: var(--fcb-garnet);
+}
+
+.product-badge {
+  font-size: 11px;
+  font-weight: 800;
+  background-color: var(--light-bg);
+  padding: 4px 8px;
+  border-radius: 4px;
+  align-self: flex-start;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+}
+
+/* Interactive Calculator (Recommendation Page) */
+.calc-container {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 30px;
+  margin-bottom: 60px;
+}
+
+.calc-form-group {
+  margin-bottom: 24px;
+  text-align: left;
+}
+
+.calc-form-group label {
+  display: block;
+  font-weight: 800;
+  font-size: 14px;
+  color: var(--dark-navy);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.calc-form-group label i {
+  color: var(--fcb-blue);
+  margin-right: 6px;
+}
+
+.calc-input, .calc-select {
+  width: 100%;
+  padding: 14px 18px;
+  border: 2px solid #E5E7EB;
+  border-radius: 4px;
+  font-size: 15px;
+  font-weight: 600;
+  font-family: var(--font-display);
+  outline: none;
+  transition: all 0.3s ease;
+  background-color: var(--pure-white);
+}
+
+.calc-input:focus, .calc-select:focus {
+  border-color: var(--fcb-blue);
+  box-shadow: 0 0 0 4px rgba(0, 77, 152, 0.1);
+}
+
+/* Result Panel & Pulsing Signal Lights */
+.result-panel {
+  background: linear-gradient(180deg, var(--dark-navy) 0%, #001E3D 100%);
+  color: var(--pure-white);
+  border-radius: 4px;
+  padding: 40px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 6px solid var(--fcb-gold);
+}
+
+.result-panel::after {
+  content: 'DECISION';
+  position: absolute;
+  bottom: -20px;
+  right: -10px;
+  font-size: 80px;
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.02);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.result-content {
+  position: relative;
+  z-index: 2;
+}
+
+.signal-box {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 18px 24px;
+  border-radius: 4px;
+  margin-bottom: 24px;
+  border-left: 6px solid #9CA3AF;
+  transition: all 0.4s ease;
+}
+
+.signal-box.green { border-left-color: #10B981; }
+.signal-box.yellow { border-left-color: var(--fcb-gold); }
+.signal-box.red { border-left-color: #EF4444; }
+
+.signal-light-bulb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.signal-light-bulb.pulse-green {
+  background-color: #10B981;
+  animation: pulseG 2s infinite;
+}
+
+.signal-light-bulb.pulse-yellow {
+  background-color: var(--fcb-gold);
+  animation: pulseY 2s infinite;
+}
+
+.signal-light-bulb.pulse-red {
+  background-color: #EF4444;
+  animation: pulseR 2s infinite;
+}
+
+@keyframes pulseG {
+  0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+  70% { box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}
+
+@keyframes pulseY {
+  0% { box-shadow: 0 0 0 0 rgba(237, 187, 0, 0.7); }
+  70% { box-shadow: 0 0 0 10px rgba(237, 187, 0, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(237, 187, 0, 0); }
+}
+
+@keyframes pulseR {
+  0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
+  70% { box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+}
+
+.score-metrics {
+  margin: 24px 0;
+}
+
+.metric-row {
+  margin-bottom: 16px;
+}
+
+.metric-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  margin-bottom: 6px;
+  font-weight: 700;
+}
+
+.progress-bg {
+  width: 100%;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0;
+  background-color: var(--fcb-gold);
+  border-radius: 4px;
+  transition: width 0.8s ease-out;
+}
+
+.progress-fill.green { background-color: #10B981; }
+.progress-fill.yellow { background-color: var(--fcb-gold); }
+.progress-fill.red { background-color: #EF4444; }
+
+/* Quadrant Matrix Style */
+.matrix-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-top: 30px;
+}
+
+.matrix-card {
+  background-color: var(--pure-white);
+  padding: 30px;
+  border-radius: 4px;
+  border-top: 5px solid var(--fcb-blue);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+  transition: transform 0.3s;
+}
+
+.matrix-card:hover {
+  transform: translateY(-5px);
+}
+
+.matrix-card.q-green { border-top-color: #10B981; }
+.matrix-card.q-yellow { border-top-color: var(--fcb-gold); }
+.matrix-card.q-red { border-top-color: #EF4444; }
+
+.matrix-card h3 {
+  font-size: 18px;
+  font-weight: 800;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.matrix-card p {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* Extra Responsive Overrides */
+@media (max-width: 1024px) {
+  .calc-container, .matrix-grid {
+    grid-template-columns: 1fr;
+  }
+}
