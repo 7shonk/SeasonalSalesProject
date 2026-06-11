@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Buying AI | 熱門商品分析_Top Products Analytics</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800;900&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+  <!-- TOP BAR -->
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="logo">
+        <span class="logo-icon">🧠</span> SMART BUYING <span class="accent-text">AI</span>
+      </div>
+      <nav>
+        <a href="index.html">首頁</a>
+        <a href="seasonality.html">季節趨勢</a>
+        <a href="products.html" class="active">熱門商品</a>
+        <a href="recommendation.html">購買建議</a>
+      </nav>
+      <div class="lang-selector">
+        <i class="fa-solid fa-globe"></i> TW
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero" style="padding: 60px 24px 100px 24px;">
+    <div class="hero-inner">
+      <div class="hero-badge">PARETO CONCENTRATION & 80/20 RULE</div>
+      <h1>熱銷主力商品分析_Top Products Analytics</h1>
+      <p>
+        在大數據分析中，市場往往呈現顯著的 Pareto 長尾集中效應。少數關鍵的「熱銷爆款」主導了大部分的市場成交金額（GMV）。本頁面帶您深入剖析這些核心商品的市佔率，並提供動態檢索。
+      </p>
+    </div>
+  </section>
+
+  <!-- PARETO CHART SECTION -->
+  <section class="analytics" style="margin-top: -50px; position: relative; z-index: 10;">
+    <div class="chart-card" style="max-width: 1300px; margin: 0 auto; padding: 32px; box-shadow: 0 10px 30px rgba(0,0,0,0.12);">
+      <div class="chart-header">
+        <h3><i class="fa-solid fa-chart-line"></i> 累計銷售佔比與 Pareto 曲線 (Cumulative Market Share)</h3>
+        <span class="badge" style="background-color: var(--fcb-garnet); color: white;">80/20 Rule</span>
+      </div>
+      <div class="canvas-wrapper" style="height: 420px; position: relative;">
+        <canvas id="pareto-chart"></canvas>
+      </div>
+      <div class="chart-footer">
+        雙軸 Pareto 分佈圖：長條圖代表單品累積總銷量（左軸），折線圖代表前 N 項商品對總銷量的累計貢獻百分比（右軸）。
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCT EXPLORER SECTION -->
+  <section class="insight" style="padding: 40px 24px 80px 24px; max-width: 1300px; margin: 0 auto;">
+    <div class="section-header" style="margin-bottom: 30px; text-align: left;">
+      <h2 style="font-size: 26px; font-weight: 800;"><i class="fa-solid fa-list-check" style="color: #A50044;"></i> 商品探索中心_Product Explorer</h2>
+      <p style="font-size: 14px; color: #4B5563; margin-top: 5px;">
+        透過搜尋品名、原始代碼或利用分類標籤，動態檢索大數據資料庫中主力商品的累積銷售數據，並評估對應的採購決策。
+      </p>
+      <div class="barca-line" style="width: 60px; margin: 10px 0 0 0;"></div>
+    </div>
+
+    <!-- FILTER BAR -->
+    <div class="filter-bar">
+      <div class="filter-btn-group">
+        <button class="filter-btn active" data-category="all">全部商品 (All)</button>
+        <button class="filter-btn" data-category="foods">生鮮美食 (Foods)</button>
+        <button class="filter-btn" data-category="hobbies">休閒娛樂 (Hobbies)</button>
+        <button class="filter-btn" data-category="household">居家生活 (Household)</button>
+      </div>
+      <div class="filter-search-wrapper">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="search-input" placeholder="搜尋商品名稱、ID 或類別...">
+      </div>
+    </div>
+
+    <!-- LOADING & NO RESULTS ALERTS -->
+    <div id="no-results" style="display: none; text-align: center; padding: 40px; color: var(--text-secondary);">
+      <i class="fa-solid fa-circle-question" style="font-size: 40px; color: #EF4444; margin-bottom: 12px;"></i>
+      <h3>無符合的商品數據</h3>
+      <p style="font-size: 14px; margin-top: 4px;">請嘗試輸入其他關鍵字或變更類別篩選。</p>
+    </div>
+
+    <!-- PRODUCT GRID -->
+    <div class="insight-grid" id="product-grid">
+      <!-- Generated dynamically by products.js -->
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-logo">🧠 SMART BUYING AI</div>
+      <p>© 2026 Smart Buying AI · Seasonal Consumer Intelligence System. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <!-- SCRIPTS -->
+  <script src="products.js"></script>
+</body>
+</html>
