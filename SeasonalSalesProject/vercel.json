@@ -1,0 +1,5 @@
+{
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/SeasonalSalesProject/website/$1" }
+  ]
+}
