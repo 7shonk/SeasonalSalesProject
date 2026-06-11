@@ -488,7 +488,10 @@ footer {
     font-size: 38px;
   }
   nav {
-    display: none; /* 手機版簡化導覽 */
+    gap: 20px;
+  }
+  nav a {
+    font-size: 14px;
   }
 }
 
@@ -1250,6 +1253,72 @@ footer {
 }
 
 @media (max-width: 768px) {
+  /* Topbar Mobile RWD */
+  .topbar-inner {
+    height: auto;
+    padding: 12px 16px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+  }
+  .logo {
+    order: 1;
+    font-size: 18px;
+  }
+  .lang-selector {
+    order: 2;
+    font-size: 13.5px;
+  }
+  nav {
+    order: 3;
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 8px;
+    margin-top: 2px;
+  }
+  nav a {
+    font-size: 13px;
+    padding: 6px 2px;
+    justify-content: center;
+    flex: 1;
+    text-align: center;
+  }
+  nav a.active::after, nav a:hover::after {
+    bottom: 0;
+    height: 3px;
+  }
+
+  /* Products Header & Timeline Belt */
+  .products-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+  }
+  .timeline-belt {
+    width: 100%;
+    overflow-x: auto;
+    display: flex;
+    white-space: nowrap;
+    border-radius: 8px;
+    padding: 6px;
+    -webkit-overflow-scrolling: touch;
+    align-self: stretch;
+    gap: 8px;
+  }
+  .timeline-btn {
+    flex-shrink: 0;
+    padding: 8px 14px;
+    font-size: 12.5px;
+  }
+
+  /* Sidebar fallback RWD (just in case) */
   .sidebar-layout {
     flex-direction: column;
   }
@@ -1270,14 +1339,18 @@ footer {
     padding: 8px 12px;
     font-size: 13px;
   }
-  .products-header {
-    flex-direction: column;
-    align-items: stretch;
-  }
-  .timeline-belt {
-    align-self: flex-start;
-  }
+
   .hot-sellers-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  nav a {
+    font-size: 12px;
+  }
+  .hot-sellers-grid {
+    grid-template-columns: 1fr;
   }
 }
