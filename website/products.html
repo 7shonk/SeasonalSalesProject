@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Buying AI | 核心主力商品_Core Market Product Ecosystem</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800;900&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+  <!-- TOP BAR (Aligned with other pages) -->
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="logo">
+        <span class="logo-icon">🧠</span> SMART BUYING <span class="accent-text">AI</span>
+      </div>
+      <nav>
+        <a href="index.html">首頁</a>
+        <a href="seasonality.html">季節趨勢</a>
+        <a href="products.html" class="active">熱門商品</a>
+        <a href="recommendation.html">購買建議</a>
+      </nav>
+      <div class="lang-selector">
+        <i class="fa-solid fa-globe"></i> TW
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT AREA -->
+  <main class="products-main" style="max-width: 1300px; margin: 0 auto; padding: 40px 24px;">
+    
+    <!-- HEADER SECTION -->
+    <header class="products-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; gap: 20px; border-bottom: 1px solid #E5E7EB; padding-bottom: 24px; flex-wrap: wrap;">
+      <div class="products-title-area">
+        <h1 style="font-size: 28px; font-weight: 900; color: var(--dark-navy); margin-bottom: 8px;">季度熱銷核心市場分析_Seasonal Hot Products Ecosystem</h1>
+        <p style="font-size: 14px; color: var(--text-secondary); line-height: 1.5;">請點選下方時間軸履帶切換銷售日子，解密各大電商平台流量與客單價接力賽演進。</p>
+      </div>
+      
+      <!-- TIMELINE BELT -->
+      <div class="timeline-belt">
+        <button class="timeline-btn active" data-period="mothersday">
+          <i class="fa-solid fa-gift"></i> 5月中旬 母親節感恩慶
+        </button>
+        <button class="timeline-btn" data-period="worldcup">
+          <i class="fa-solid fa-globe"></i> 6/5今日開打 世界盃狂歡
+        </button>
+        <button class="timeline-btn" data-period="midyear618">
+          <i class="fa-solid fa-bolt"></i> 6月中下旬 618年中慶
+        </button>
+      </div>
+    </header>
+
+    <!-- ACTIVE PERIOD BANNER -->
+    <div class="dynamic-section-title" style="display: flex; align-items: center; gap: 10px; margin-bottom: 24px;">
+      <span class="badge" id="period-badge" style="background-color: var(--fcb-garnet); color: var(--pure-white); font-size: 11px; font-weight: 800; padding: 4px 10px; border-radius: 3px; text-transform: uppercase;">MOTHER'S DAY</span>
+      <h2 id="period-title" style="font-size: 22px; font-weight: 850; color: var(--dark-navy);">母親節美妝大牌感恩慶_Mother's Day Mega Skincare Peak</h2>
+    </div>
+
+    <!-- DOUBLE COLUMN AREA -->
+    <div class="double-column-container">
+      
+      <!-- LEFT: CHART -->
+      <div class="chart-card" style="padding: 24px;">
+        <div class="chart-header" style="margin-bottom: 12px; padding-bottom: 8px; display: flex; justify-content: space-between; align-items: center;">
+          <h3 style="font-size: 18px; font-weight: 800; color: var(--dark-navy);"><i class="fa-solid fa-chart-line" style="color: var(--fcb-blue); margin-right: 8px;"></i> 品類集中度多元觀測圖表_Category Intensity Matrix</h3>
+          <span class="badge" style="background-color: var(--fcb-gold); color: var(--dark-navy); font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 4px; text-transform: uppercase;">AOV</span>
+        </div>
+        <p style="font-size: 11.5px; color: var(--text-secondary); margin-bottom: 15px;">AOV 平均客單價拉抬係數 (Average Order Value Index)</p>
+        <div class="canvas-wrapper" style="height: 320px; position: relative;">
+          <canvas id="category-chart"></canvas>
+        </div>
+      </div>
+
+      <!-- RIGHT: VOLATILITY LEADERBOARD -->
+      <div class="chart-card" style="padding: 24px;">
+        <div class="chart-header" style="margin-bottom: 12px; padding-bottom: 8px; display: flex; justify-content: space-between; align-items: center;">
+          <h3 style="font-size: 18px; font-weight: 800; color: var(--dark-navy);"><i class="fa-solid fa-ranking-star" style="color: var(--fcb-blue); margin-right: 8px;"></i> 動態爆發熱門核心品類 Top 3_Top 3 Dynamic Volatility</h3>
+          <span class="badge" style="font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 4px; text-transform: uppercase;">Live</span>
+        </div>
+        <div class="volatility-list" id="volatility-list">
+          <!-- Injected by JS -->
+        </div>
+      </div>
+
+    </div>
+
+    <!-- MERCHANT DECODED TRICK BOX -->
+    <div class="decoded-box">
+      <h4><i class="fa-solid fa-lightbulb"></i> AI insider 商家策略破譯提示_Merchant Trick Decoded</h4>
+      <p id="decoded-text">載入中...</p>
+    </div>
+
+    <!-- HOT SELLERS SECTION -->
+    <section class="hot-sellers-section-header">
+      <h3>當前市場最熱賣嵌入單品_Live Affiliate Hot-Sellers</h3>
+      <p>商品數據與實體通路即時連動_E-commerce Real Link</p>
+    </section>
+
+    <!-- HOT SELLERS GRID -->
+    <div class="hot-sellers-grid" id="hot-sellers-grid">
+      <!-- Injected by JS -->
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-logo">🧠 SMART BUYING AI</div>
+      <p>© 2026 Smart Buying AI · Seasonal Consumer Intelligence System. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <!-- SCRIPTS -->
+  <script src="products.js"></script>
+</body>
+</html>
