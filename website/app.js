@@ -260,7 +260,9 @@ document.addEventListener("DOMContentLoaded", async () => {
       });
     }
 
-    // 首頁 AI 搜尋鈕模擬點擊互動
+    // ==========================================================================
+    // 4.1 首頁 AI 搜尋鈕模擬點擊互動 - 升級版銷售季節時機精算引擎
+    // ==========================================================================
     const searchBtn = document.querySelector(".search-box button");
     const searchInput = document.querySelector(".search-box input");
     if (searchBtn && searchInput) {
@@ -270,20 +272,47 @@ document.addEventListener("DOMContentLoaded", async () => {
           alert("請輸入商品名稱！ / Please enter a product name!");
           return;
         }
-        // Simple heuristic decision based on product keywords
-        const decision = (() => {
-          const lowered = val.toLowerCase();
-          if (/(iphone|手機|電視)/.test(lowered)) return "🟢 立即購買 - 市場需求穩定，當前為最佳入手時機。";
-          if (/(吸塵器|電風扇|除濕機)/.test(lowered)) return "🟡 可觀望 - 近期需求波動，建議關注促銷訊息。";
-          return "🔴 建議等待 - 目前需求低迷或缺貨風險較高，請稍後再檢視。";
-        })();
-        searchBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> 精算中...`;
+
+        // 建立多維度季節與核心品類的決策庫
+        const lowered = val.toLowerCase();
+        let decisionTitle = "";
+        let decisionText = "";
+
+        // A. 美妝、護膚、面膜類商品
+        if (/(面膜|精華|保養|美妝|唇膏|化妝|修護)/.test(lowered)) {
+          decisionTitle = "🟢 推薦購買 - 進入美妝大牌感恩黃金窗口";
+          decisionText = `💡 核心決策提示：\n${val} 屬於高情感溢價品類。大數據顯示，全台保養品全年度實質折扣最大的兩大窗口為「5月母親節感恩慶」與「10月百貨週年慶」。此時大牌常祭出買一送一或加贈等量小樣組合，折算毫升單價為全年最低！\n\n🎯 推薦入手時機：5月母親節預購會、10月週年慶首四日、3月線上女神節。`;
+        } 
+        // B. 大型與季節性家用電器（冷氣、除濕機、吸塵器等）
+        else if (/(冷氣|除濕|電風扇|家電|吸塵器|電視|洗碗機|烤箱|氣炸鍋)/.test(lowered)) {
+          decisionTitle = "🟢/🟡 策略性觀望 - 鎖定年中破價與反向套利窗口";
+          decisionText = `💡 核心決策提示：\n${val} 屬於中高客單價耐久財。切勿在盛夏爆發期（7-8月）衝動購買消暑家電，此時廠商不讓利且安裝師傅嚴重爆單。最佳綠燈時機為「5月底至618年中大促」，平台補貼戰打得最猛；或是「2-3月年後淡季」，廠商為美化財報會進行倉庫舊款機種清庫存拋售，適合反向套利！\n\n🎯 推薦入手時機：618年中狂歡大促（5月底先行暖身卡位）、2-3月年後清庫存淡季。`;
+        } 
+        // C. 3C 旗艦科技、手機、筆電
+        else if (/(iphone|手機|筆電|平板|電腦|耳機|3c|顯示卡)/.test(lowered)) {
+          decisionTitle = "🟡 雙向觀望 - 避開新品發佈黑洞，等待終極破價";
+          decisionText = `💡 核心決策提示：\n${val} 的價格受新品發佈週期與平台補貼影響劇烈。若瞄準的是 Apple 生態系，8-9月秋季發表會時官網價格極硬且排單嚴重（溢價風險高）。非學生身份（無法使用 BTS 專案者）建議按兵不動，直接鎖定年底雙 11 與黑色星期五海淘狂歡，此時官方百億補貼與跨店滿減三重疊加，ROAS 投報率最高！\n\n🎯 推薦入手時機：11月雙11全球狂歡大促、11月下旬黑色星期五跨境海淘、8月開學季（限學生/教職員）。`;
+        } 
+        // D. 節慶短效與派對變裝道具
+        else if (/(萬聖|聖誕|變裝|道具|禮盒|交換禮物|春聯)/.test(lowered)) {
+          decisionTitle = "🔴 避開高峰 - 警惕短效泡沫需求的情感溢價";
+          decisionText = `💡 核心決策提示：\n節慶商品具有「節日過後殘值歸零」的泡沫特質。在節日前夕（如萬聖當週、聖誕前夜），商家會收取極高昂的儀式感包裝溢價。最聰明的精明理財套利時機，其實是節日當天晚上（如 10/31 萬聖夜、12/26 Boxing Day），廠商為去化庫存會瞬間祭出 2 折至 5 折的跳樓清倉，最適合提早為明年進貨！\n\n🎯 推薦入手時機：節慶當晚/過後第一時間的「清倉殘值去化期」。`;
+        } 
+        // E. 通用長尾商品
+        else {
+          decisionTitle = "🟡 雙向觀望 - 市場需求常態，建議列入追蹤名單";
+          decisionText = `💡 核心決策提示：\n目前「${val}」在全通路零售供需強度與折扣深度上處於平穩基期。在此時缺乏大型行銷造節（如雙11、618）補貼，價格回歸常態 MSRP。除非有剛性急需，否則 AI 建議先將商品加入購物車，等待下一個主要電商促銷檔期再行結帳，以獲取跨店滿減神券。`;
+        }
+
+        // 模擬 AI 退火演算法精算動畫
+        searchBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Smart Buying AI 模擬退火精算中...`;
         searchBtn.disabled = true;
+        
         setTimeout(() => {
           searchBtn.innerHTML = `分析最佳時機 <i class="fa-solid fa-arrow-right"></i>`;
           searchBtn.disabled = false;
-          alert(`🧠 【Smart Buying AI 決策報告}\n\n已成功分析「${val}」之市場數據：\n${decision}`);
-        }, 1000);
+          alert(`🧠 【Smart Buying AI 決策報告】\n\n已成功為您媒合全通路零售供需數據：\n\n商品名稱：${val}\n當前狀態：${decisionTitle}\n\n${decisionText}`);
+        }, 1100);
       });
     }
 
@@ -443,7 +472,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           text: "🔥 商業術語：精準客群行銷 / 客製化搭售 (Product Bundling Strategy)\n\n電商平台在 88 節會將行銷預算精準鎖定在「實用性與高客單價」的商品上。像是刮鬍刀品牌會進行極具創意的『買刀送單眼/送清淨機』等跨界高價值搭售策略。AI 決策：如果你不需要那些搭售的昂貴贈品，直接鎖定電商平台的「現折現金神券」進行單品折抵，或是在父親節過後第一週進場撿便宜，價格往往能直接下殺 75 折！",
           items: [
             { icon: "🪒", title: "智慧感應日本製五刀頭刮鬍刀", desc: "父親節不敗的冠軍級剛需爆款" },
-            { icon: "🛋️", title: "微重力全體感智慧紓壓按摩椅", desc: "高客單價高額滿額禮激戰重心" },
+            { icon: "🛋️", title: "微重力全體感智慧紓壓按摩椅", desc: "高客單價高額滿額禮激激戰重心" },
             { icon: "⌚", title: "醫療級心率血壓監測智慧手錶", desc: "長輩健康照護科技發燒新品" },
             { icon: "💆", title: "深層震動高頻肌肉放鬆筋膜槍", desc: "近年上班族孝親超熱門單品" },
             { icon: "🧴", title: "男士控油深層潔淨火山泥洗面乳", desc: "男性保養引流款高轉化消耗品" }
@@ -495,7 +524,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           ]
         },
         halloween: {
-          title: "萬聖節主題派對零食季", metric: "主題變裝道具與進口糖果成交增長率 (Fancy Dress Peak)", badge: "🎃 HALLOWEEN PARTY", themeColor: "#EA580C", type: "bar",
+          title: "萬聖節主題派 party 零食季", metric: "主題變裝道具與進口糖果成交增長率 (Fancy Dress Peak)", badge: "🎃 HALLOWEEN PARTY", themeColor: "#EA580C", type: "bar",
           desc: "全台灣幼兒園、夜店與社群派對的年度盛宴，帶動搞怪變裝服飾與特色糖果零食在 10 月下半月急速噴發。",
           chartData: [15, 45, 280, 50, 10],
           labels: ["10月上旬", "變裝主題暖身", "萬聖節前夜高峰", "萬聖過後當晚", "11月初常態"],
